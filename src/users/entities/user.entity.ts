@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { FileEntity } from "../../files/entities/file.entity";
 
 @Entity('users')
 export class UserEntity {
@@ -7,6 +8,8 @@ export class UserEntity {
     id: number;
 
     @Column()
-    name: string
+    name: string;
 
+    @OneToMany(() => FileEntity, (file) => file.user)
+    files: FileEntity[];
 }

@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { UserEntity } from "../../users/entities/user.entity";
 
 @Entity('files')
 export class FileEntity {
@@ -7,5 +8,8 @@ export class FileEntity {
 
     @Column()
     name: string
+
+    @ManyToOne(() => UserEntity, (user) => user.files)
+    user: UserEntity;
 
 }
